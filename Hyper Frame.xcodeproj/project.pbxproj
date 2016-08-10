@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		860C27951D575F4300F3CC9E /* Program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 860C27931D575F4300F3CC9E /* Program.cpp */; };
 		860C27981D57628300F3CC9E /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 860C27961D57628300F3CC9E /* Shader.cpp */; };
-		860C279B1D576D8200F3CC9E /* Cube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 860C27991D576D8200F3CC9E /* Cube.cpp */; };
 		860C279C1D5785C100F3CC9E /* libGLEW.2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D5BFA11D571C3B001DEC45 /* libGLEW.2.0.0.dylib */; };
 		860C279D1D5785F000F3CC9E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8640B80A1D54E901004AE69F /* OpenGL.framework */; };
 		861286161D59C6D800BD448A /* Graphics in CopyFiles */ = {isa = PBXBuildFile; fileRef = 861286141D59C6D100BD448A /* Graphics */; };
@@ -23,6 +22,7 @@
 		8640B8091D54DEEE004AE69F /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8640B8071D54DEEE004AE69F /* Level.cpp */; };
 		86479F631D55B8BA004CD32B /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86479F611D55B8BA004CD32B /* Input.cpp */; };
 		8658AB6D1D5AA74000E852AE /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8658AB6B1D5AA74000E852AE /* Camera.cpp */; };
+		86B78BEE1D5B0A8400C46481 /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86B78BEC1D5B0A8400C46481 /* Cell.cpp */; };
 		86D5BE961D56EAE2001DEC45 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86D5BE941D56EAE2001DEC45 /* Entity.cpp */; };
 /* End PBXBuildFile section */
 
@@ -45,8 +45,6 @@
 		860C27941D575F4300F3CC9E /* Program.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Program.hpp; path = Krengine/Program.hpp; sourceTree = "<group>"; };
 		860C27961D57628300F3CC9E /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = Krengine/Shader.cpp; sourceTree = "<group>"; };
 		860C27971D57628300F3CC9E /* Shader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Shader.hpp; path = Krengine/Shader.hpp; sourceTree = "<group>"; };
-		860C27991D576D8200F3CC9E /* Cube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cube.cpp; path = Entities/Cube.cpp; sourceTree = "<group>"; };
-		860C279A1D576D8200F3CC9E /* Cube.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Cube.hpp; path = Entities/Cube.hpp; sourceTree = "<group>"; };
 		861286141D59C6D100BD448A /* Graphics */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Graphics; sourceTree = "<group>"; };
 		861286151D59C6D100BD448A /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders; sourceTree = "<group>"; };
 		861286181D59C78F00BD448A /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = Krengine/Texture.cpp; sourceTree = "<group>"; };
@@ -66,6 +64,8 @@
 		86479F621D55B8BA004CD32B /* Input.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Input.hpp; path = Krengine/Input.hpp; sourceTree = "<group>"; };
 		8658AB6B1D5AA74000E852AE /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = Krengine/Camera.cpp; sourceTree = "<group>"; };
 		8658AB6C1D5AA74000E852AE /* Camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Camera.hpp; path = Krengine/Camera.hpp; sourceTree = "<group>"; };
+		86B78BEC1D5B0A8400C46481 /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cell.cpp; path = Entities/Cell.cpp; sourceTree = "<group>"; };
+		86B78BED1D5B0A8400C46481 /* Cell.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Cell.hpp; path = Entities/Cell.hpp; sourceTree = "<group>"; };
 		86D5BE941D56EAE2001DEC45 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Entity.cpp; path = Krengine/Entity.cpp; sourceTree = "<group>"; };
 		86D5BE951D56EAE2001DEC45 /* Entity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Entity.hpp; path = Krengine/Entity.hpp; sourceTree = "<group>"; };
 		86D5BF9F1D571159001DEC45 /* Maths.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Maths.hpp; path = Krengine/Maths.hpp; sourceTree = "<group>"; };
@@ -156,8 +156,8 @@
 		8640B8031D54DDBD004AE69F /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				860C27991D576D8200F3CC9E /* Cube.cpp */,
-				860C279A1D576D8200F3CC9E /* Cube.hpp */,
+				86B78BEC1D5B0A8400C46481 /* Cell.cpp */,
+				86B78BED1D5B0A8400C46481 /* Cell.hpp */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -218,7 +218,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				860C279B1D576D8200F3CC9E /* Cube.cpp in Sources */,
 				8640B8061D54DDD8004AE69F /* Scene.cpp in Sources */,
 				8640B7F31D54CF15004AE69F /* main.cpp in Sources */,
 				860C27981D57628300F3CC9E /* Shader.cpp in Sources */,
@@ -227,6 +226,7 @@
 				8640B8091D54DEEE004AE69F /* Level.cpp in Sources */,
 				8640B8011D54D735004AE69F /* Game.cpp in Sources */,
 				86D5BE961D56EAE2001DEC45 /* Entity.cpp in Sources */,
+				86B78BEE1D5B0A8400C46481 /* Cell.cpp in Sources */,
 				86479F631D55B8BA004CD32B /* Input.cpp in Sources */,
 				8612861A1D59C78F00BD448A /* Texture.cpp in Sources */,
 			);

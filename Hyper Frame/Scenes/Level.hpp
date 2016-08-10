@@ -12,6 +12,9 @@ class Level : public Scene
 		void Init();
 		void Update();
 		void Draw();
+
+	private:
+		const int cubeSize = 160;
 };
 
 #endif

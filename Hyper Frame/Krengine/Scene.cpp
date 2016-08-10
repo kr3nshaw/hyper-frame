@@ -77,7 +77,7 @@ namespace Krengine
 		glUseProgram(this->program->GetProgram());
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		projection = glGetUniformLocation(this->program->GetProgram(), "Projection");
 		glUniformMatrix4fv(projection, 1, GL_FALSE, value_ptr(camera.Projection));

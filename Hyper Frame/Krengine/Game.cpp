@@ -34,6 +34,8 @@ namespace Krengine
 			Log(SDL_GetError());
 		}
 
+		glEnable(GL_DEPTH_TEST);
+
 		SDL_GL_SetSwapInterval(1);
 
 		glewExperimental = GL_TRUE;
