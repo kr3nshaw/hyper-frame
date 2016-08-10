@@ -89,9 +89,9 @@ namespace Krengine
 		{
 			Matrix4 Model;
 			Model = glm::translate(Model, entity->position);
-			Model *= glm::rotate(Model, entity->rotation.x, Vector3(1.0f, 0.0f, 0.0f));
-			Model *= glm::rotate(Model, entity->rotation.y, Vector3(0.0f, 1.0f, 0.0f));
 			Model *= glm::rotate(Model, entity->rotation.z, Vector3(0.0f, 0.0f, 1.0f));
+			Model *= glm::rotate(Model, entity->rotation.y, Vector3(0.0f, 1.0f, 0.0f));
+			Model *= glm::rotate(Model, entity->rotation.x, Vector3(1.0f, 0.0f, 0.0f));
 			Model *= glm::scale(Model, entity->scale);
 			model = glGetUniformLocation(this->program->GetProgram(), "Model");
 			glUniformMatrix4fv(model, 1, GL_FALSE, value_ptr(Model));

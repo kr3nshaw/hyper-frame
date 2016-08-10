@@ -10,6 +10,13 @@ namespace Krengine
 	class Entity
 	{
 		public:
+			Vector3 scale;
+			Vector3 rotation;
+			Vector3 position;
+			GLuint vertexArray;
+			GLuint vertexBuffer;
+			GLuint elementBuffer;
+
 			virtual ~Entity();
 			virtual void Init() = 0;
 
@@ -18,13 +25,6 @@ namespace Krengine
 			int GetElementsCount();
 			const int* GetElements();
 			Texture* GetTexture();
-
-			Vector3 scale;
-			Vector3 rotation;
-			Vector3 position;
-			GLuint vertexArray;
-			GLuint vertexBuffer;
-			GLuint elementBuffer;
 
 		protected:
 			void Init(int verticesCount,
@@ -37,13 +37,13 @@ namespace Krengine
 					  Vector3 position);
 
 		private:
+			bool created = false;
+
 			int verticesCount;
 			float* vertices = nullptr;
 			int elementsCount;
 			int* elements = nullptr;
 			Texture* texture = nullptr;
-
-			bool created = false;
 	};
 }
 

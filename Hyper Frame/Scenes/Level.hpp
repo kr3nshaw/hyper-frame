@@ -2,6 +2,7 @@
 #define Level_hpp
 
 #include "../Krengine/Scene.hpp"
+#include "../Krengine/Maths.hpp"
 
 using namespace Krengine;
 
@@ -14,7 +15,8 @@ class Level : public Scene
 		void Draw();
 
 	private:
-		const int cubeSize = 160;
+		int cubeSize;
+		float cameraDistance;
 };
 
 #endif

@@ -8,6 +8,8 @@
 #include "../Krengine/Camera.hpp"
 #include "../Krengine/Maths.hpp"
 #include "../Krengine/Input.hpp"
+#include <algorithm>
+#include <cmath>
 #include <vector>
 
 using namespace Krengine;
@@ -15,15 +17,16 @@ using namespace std;
 
 Level::Level(int width, int height) : Scene(width, height)
 {
-	//
+	cubeSize = height / 3.0f;
+	cameraDistance = cubeSize * 2.0f;
 }
 
 void Level::Init()
 {
 	Program* program = new Program(new Shader(true, Vertex, "./Shaders/vertex.vert"), new Shader(true, Fragment, "./Shaders/fragment.frag"));
 
-	Texture* blank = new Texture("./Graphics/Cells/Blank.png");
-	Texture* blocked = new Texture("./Graphics/Cells/Blocked.png");
+	// Texture* blank = new Texture("./Graphics/Cells/Blank.png");
+	// Texture* blocked = new Texture("./Graphics/Cells/Blocked.png");
 
 	vector<vector<Texture*>> cells;
 
@@ -58,14 +61,14 @@ void Level::Init()
 	{
 		for (int j = 0; j < dimension; ++j)
 		{
-			entities.push_back(new Cell(Vector3(1.0f, 0.0f, 0.0f), cubeSize, dimension, Vector2(i, j), cells[i][j]));
-			entities.push_back(new Cell(Vector3(0.0f, 1.0f, 0.0f), cubeSize, dimension, Vector2(i, j), cells[i][j]));
-			entities.push_back(new Cell(Vector3(0.0f, 0.0f, 1.0f), cubeSize, dimension, Vector2(i, j), cells[i][j]));
+			entities.push_back(new Cell(Vector3(1.0f, 0.0f, 0.0f), cubeSize, dimension, Vector2(i, j), cells[2][0]));
+			entities.push_back(new Cell(Vector3(0.0f, 1.0f, 0.0f), cubeSize, dimension, Vector2(i, j), cells[1][0]));
+			entities.push_back(new Cell(Vector3(0.0f, 0.0f, 1.0f), cubeSize, dimension, Vector2(i, j), cells[0][0]));
 		}
 	}
 
-	Scene::Init(program, Camera(Vector3(cubeSize, cubeSize, cubeSize),
-								Vector3(cubeSize / 2.0f, cubeSize / 2.0f, cubeSize / 2.0f),
+	Scene::Init(program, Camera(Vector3(0.0f, 0.0f, cameraDistance),
+								Vector3(0.0f, 0.0f, 0.0f),
 								Vector3(0.0f, 1.0f, 0.0f),
 								74.0f,
 								(float)GetWidth() / (float)GetHeight(),
@@ -75,22 +78,23 @@ void Level::Init()
 
 void Level::Update()
 {
-	if (Input::GetVK_LEFT())
-	{
-		--camera.Position.x;
-	}
-	else if (Input::GetVK_RIGHT())
-	{
-		++camera.Position.x;
-	}
-	else if (Input::GetVK_UP())
-	{
-		--camera.Position.y;
-	}
-	else if (Input::GetVK_DOWN())
-	{
-		++camera.Position.y;
-	}
+	float x = (min(max(GetHeight() / 3.0f, (float)Input::GetMouseY()), (2.0f / 3.0f) * GetHeight()) - (GetHeight() / 3.0f)) / (GetHeight() / 3.0f);
+	float y = (min(max(GetWidth() / 3.0f, (float)Input::GetMouseX()), (2.0f / 3.0f) * GetWidth()) - (GetWidth() / 3.0f)) / (GetWidth() / 3.0f);
+	float z = 0.0f;
+
+	x = (x * (M_PI / 2.0f)) - (M_PI / 2.0f);
+	y *= (M_PI / 2.0f);
+
+	Vector3 v;
+	v.x = ((cos(y) * cos(z)) * 0.0f) +
+		  (((cos(z) * sin(x) * sin(y)) - (cos(x) * (sin(z)))) * 0.0f) +
+		  (((cos(x) * cos(z) * sin(y)) + (sin(x) * sin(z))) * cameraDistance);
+	v.y = ((cos(y) * sin(z)) * 0.0f) +
+		  (((cos(x) * cos(z)) + (sin(x) * sin(y) * sin(z))) * 0.0f) +
+		  (((cos(x) * sin(y) * sin(z)) - (cos(z) * sin(x))) * cameraDistance);
+	v.z = (-sin(y) * 0.0f) + ((cos(y) * sin(x)) * 0.0f) + ((cos(x) * (cos(y))) * cameraDistance);
+
+	camera.Position = v;
 
 	Scene::Update();
 }

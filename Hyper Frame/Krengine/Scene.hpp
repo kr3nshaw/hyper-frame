@@ -23,10 +23,10 @@ namespace Krengine
 			Scene* GetNextScene();
 
 		protected:
-			void Init(Program* program, Camera camera);
-
 			std::vector<Entity*> entities;
 			Camera camera;
+
+			void Init(Program* program, Camera camera);
 
 		private:
 			Program* program = nullptr;
