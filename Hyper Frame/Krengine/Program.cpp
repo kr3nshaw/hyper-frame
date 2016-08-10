@@ -1,0 +1,63 @@
+#include "Program.hpp"
+#include "Shader.hpp"
+#include "Game.hpp"
+#include <GL/glew.h>
+#include <cstdlib>
+
+namespace Krengine
+{
+	Program::Program(Shader* vertexShader, Shader* fragmentShader) : vertexShader(vertexShader), fragmentShader(fragmentShader)
+	{
+		//
+	}
+
+	Program::~Program()
+	{
+		if (created)
+		{
+			glDetachShader(program, this->fragmentShader->GetShader());
+			glDetachShader(program, this->vertexShader->GetShader());
+
+			glDeleteProgram(program);
+		}
+
+		delete fragmentShader;
+		delete vertexShader;
+	}
+
+	void Program::Init()
+	{
+		if (!created)
+		{
+			program = glCreateProgram();
+
+			vertexShader->Init();
+			fragmentShader->Init();
+
+			glAttachShader(program, this->vertexShader->GetShader());
+			glAttachShader(program, this->fragmentShader->GetShader());
+
+			glLinkProgram(program);
+
+			int logLength;
+			glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLength);
+
+			if (logLength > 0)
+			{
+				char* log = (char*)malloc(logLength);
+				glGetProgramInfoLog(program, logLength, &logLength, log);
+
+				Game::Log(log);
+
+				free(log);
+			}
+			
+			created = true;
+		}
+	}
+
+	GLuint Program::GetProgram()
+	{
+		return program;
+	}
+}
