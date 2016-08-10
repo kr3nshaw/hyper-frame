@@ -1,12 +1,12 @@
-#include "Scene.hpp"
-#include "Program.hpp"
-#include "Entity.hpp"
-#include "Texture.hpp"
 #include "Camera.hpp"
+#include "Entity.hpp"
 #include "Maths.hpp"
+#include "Program.hpp"
+#include "Scene.hpp"
+#include "Texture.hpp"
+#include <GL/glew.h>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/transform.hpp>
-#include <GL/glew.h>
 
 namespace Krengine
 {

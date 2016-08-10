@@ -1,6 +1,6 @@
+#include "Game.hpp"
 #include "Program.hpp"
 #include "Shader.hpp"
-#include "Game.hpp"
 #include <GL/glew.h>
 #include <cstdlib>
 
@@ -51,7 +51,7 @@ namespace Krengine
 
 				free(log);
 			}
-			
+
 			created = true;
 		}
 	}

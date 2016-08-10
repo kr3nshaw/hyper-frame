@@ -1,7 +1,7 @@
 #include "Cell.hpp"
 #include "../Krengine/Entity.hpp"
-#include "../Krengine/Texture.hpp"
 #include "../Krengine/Maths.hpp"
+#include "../Krengine/Texture.hpp"
 
 using namespace Krengine;
 
@@ -10,6 +10,7 @@ Cell::Cell(Vector3 face, int size, int dimension, Vector2 gridPosition, Texture*
 	const float start = -(size / 2.0f);
 	const float cellSize = (float)size / (float)dimension;
 	const float cubeSize = size / 2.0f;
+	
 	float* v = new float[20];
 
 	if (face.x == 1.0f)

@@ -1,9 +1,9 @@
 #ifndef Scene_hpp
 #define Scene_hpp
 
-#include "Program.hpp"
-#include "Entity.hpp"
 #include "Camera.hpp"
+#include "Entity.hpp"
+#include "Program.hpp"
 #include <GL/glew.h>
 #include <vector>
 

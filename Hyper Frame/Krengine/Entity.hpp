@@ -1,8 +1,8 @@
 #ifndef Entity_hpp
 #define Entity_hpp
 
-#include "Texture.hpp"
 #include "Maths.hpp"
+#include "Texture.hpp"
 #include <GL/glew.h>
 
 namespace Krengine

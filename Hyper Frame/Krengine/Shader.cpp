@@ -1,5 +1,5 @@
-#include "Shader.hpp"
 #include "Game.hpp"
+#include "Shader.hpp"
 #include <GL/glew.h>
 #include <cstdio>
 #include <cstdlib>
@@ -71,10 +71,10 @@ namespace Krengine
 				glGetShaderInfoLog(shader, logLength, &logLength, log);
 
 				Game::Log(log);
-				
+
 				free(log);
 			}
-			
+
 			created = true;
 		}
 	}

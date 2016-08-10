@@ -1,6 +1,6 @@
 #include "Game.hpp"
-#include "Scene.hpp"
 #include "Input.hpp"
+#include "Scene.hpp"
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 #include <cstdio>

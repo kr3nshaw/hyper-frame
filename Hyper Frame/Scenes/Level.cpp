@@ -1,13 +1,13 @@
-#include "Level.hpp"
 #include "Cell.hpp"
-#include "../Krengine/Scene.hpp"
-#include "../Krengine/Program.hpp"
-#include "../Krengine/Shader.hpp"
-#include "../Krengine/Entity.hpp"
-#include "../Krengine/Texture.hpp"
+#include "Level.hpp"
 #include "../Krengine/Camera.hpp"
-#include "../Krengine/Maths.hpp"
+#include "../Krengine/Entity.hpp"
 #include "../Krengine/Input.hpp"
+#include "../Krengine/Maths.hpp"
+#include "../Krengine/Program.hpp"
+#include "../Krengine/Scene.hpp"
+#include "../Krengine/Shader.hpp"
+#include "../Krengine/Texture.hpp"
 #include <algorithm>
 #include <cmath>
 #include <vector>
@@ -80,21 +80,13 @@ void Level::Update()
 {
 	float x = (min(max(GetHeight() / 3.0f, (float)Input::GetMouseY()), (2.0f / 3.0f) * GetHeight()) - (GetHeight() / 3.0f)) / (GetHeight() / 3.0f);
 	float y = (min(max(GetWidth() / 3.0f, (float)Input::GetMouseX()), (2.0f / 3.0f) * GetWidth()) - (GetWidth() / 3.0f)) / (GetWidth() / 3.0f);
-	float z = 0.0f;
 
 	x = (x * (M_PI / 2.0f)) - (M_PI / 2.0f);
 	y *= (M_PI / 2.0f);
 
-	Vector3 v;
-	v.x = ((cos(y) * cos(z)) * 0.0f) +
-		  (((cos(z) * sin(x) * sin(y)) - (cos(x) * (sin(z)))) * 0.0f) +
-		  (((cos(x) * cos(z) * sin(y)) + (sin(x) * sin(z))) * cameraDistance);
-	v.y = ((cos(y) * sin(z)) * 0.0f) +
-		  (((cos(x) * cos(z)) + (sin(x) * sin(y) * sin(z))) * 0.0f) +
-		  (((cos(x) * sin(y) * sin(z)) - (cos(z) * sin(x))) * cameraDistance);
-	v.z = (-sin(y) * 0.0f) + ((cos(y) * sin(x)) * 0.0f) + ((cos(x) * (cos(y))) * cameraDistance);
-
-	camera.Position = v;
+	camera.Position.x = cos(x) * sin(y) * cameraDistance;
+	camera.Position.y = -sin(x) * cameraDistance;
+	camera.Position.z = cos(x) * cos(y) * cameraDistance;
 
 	Scene::Update();
 }

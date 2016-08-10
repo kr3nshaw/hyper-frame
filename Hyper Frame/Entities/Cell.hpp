@@ -2,8 +2,8 @@
 #define Cell_hpp
 
 #include "../Krengine/Entity.hpp"
-#include "../Krengine/Texture.hpp"
 #include "../Krengine/Maths.hpp"
+#include "../Krengine/Texture.hpp"
 
 using namespace Krengine;
 

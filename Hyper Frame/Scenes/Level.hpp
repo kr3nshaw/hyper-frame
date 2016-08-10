@@ -2,7 +2,6 @@
 #define Level_hpp
 
 #include "../Krengine/Scene.hpp"
-#include "../Krengine/Maths.hpp"
 
 using namespace Krengine;
 

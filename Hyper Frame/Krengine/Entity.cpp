@@ -1,4 +1,5 @@
 #include "Entity.hpp"
+#include "Maths.hpp"
 #include "Texture.hpp"
 #include <GL/glew.h>
 
