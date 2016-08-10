@@ -23,6 +23,7 @@
 		86479F631D55B8BA004CD32B /* Input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86479F611D55B8BA004CD32B /* Input.cpp */; };
 		8658AB6D1D5AA74000E852AE /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8658AB6B1D5AA74000E852AE /* Camera.cpp */; };
 		86B78BEE1D5B0A8400C46481 /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86B78BEC1D5B0A8400C46481 /* Cell.cpp */; };
+		86C077EA1D5BF325005069F8 /* Cubes in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86C077E91D5BF314005069F8 /* Cubes */; };
 		86D5BE961D56EAE2001DEC45 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86D5BE941D56EAE2001DEC45 /* Entity.cpp */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				86C077EA1D5BF325005069F8 /* Cubes in CopyFiles */,
 				861286161D59C6D800BD448A /* Graphics in CopyFiles */,
 				861286171D59C6D800BD448A /* Shaders in CopyFiles */,
 			);
@@ -66,6 +68,7 @@
 		8658AB6C1D5AA74000E852AE /* Camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Camera.hpp; path = Krengine/Camera.hpp; sourceTree = "<group>"; };
 		86B78BEC1D5B0A8400C46481 /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cell.cpp; path = Entities/Cell.cpp; sourceTree = "<group>"; };
 		86B78BED1D5B0A8400C46481 /* Cell.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Cell.hpp; path = Entities/Cell.hpp; sourceTree = "<group>"; };
+		86C077E91D5BF314005069F8 /* Cubes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cubes; sourceTree = "<group>"; };
 		86D5BE941D56EAE2001DEC45 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Entity.cpp; path = Krengine/Entity.cpp; sourceTree = "<group>"; };
 		86D5BE951D56EAE2001DEC45 /* Entity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Entity.hpp; path = Krengine/Entity.hpp; sourceTree = "<group>"; };
 		86D5BF9F1D571159001DEC45 /* Maths.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Maths.hpp; path = Krengine/Maths.hpp; sourceTree = "<group>"; };
@@ -110,6 +113,7 @@
 		8640B7F11D54CF15004AE69F /* Hyper Frame */ = {
 			isa = PBXGroup;
 			children = (
+				86C077E91D5BF314005069F8 /* Cubes */,
 				8640B8031D54DDBD004AE69F /* Entities */,
 				861286141D59C6D100BD448A /* Graphics */,
 				8640B7FB1D54D646004AE69F /* Krengine */,
