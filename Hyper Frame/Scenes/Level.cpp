@@ -127,8 +127,8 @@ void Level::Update()
 	float x = (min(max(GetHeight() / 3.0f, (float)Input::GetMouseY()), (2.0f / 3.0f) * GetHeight()) - (GetHeight() / 3.0f)) / (GetHeight() / 3.0f);
 	float y = (min(max(GetWidth() / 3.0f, (float)Input::GetMouseX()), (2.0f / 3.0f) * GetWidth()) - (GetWidth() / 3.0f)) / (GetWidth() / 3.0f);
 
-	x = (x * (M_PI / 2.0f)) - (M_PI / 2.0f);
-	y *= (M_PI / 2.0f);
+	x = (x * (M_PI / 2.0f)) + ((3.0f / 2.0f) * M_PI);
+	y *= M_PI / 2.0f;
 
 	camera.Position.x = cos(x) * sin(y) * cameraDistance;
 	camera.Position.y = -sin(x) * cameraDistance;
