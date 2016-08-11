@@ -1,13 +1,14 @@
 #include "Game.hpp"
 #include "Input.hpp"
 #include "Scene.hpp"
+#include "Window.hpp"
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 #include <cstdio>
 
 namespace Krengine
 {
-	Game::Game(const char* const title, int width, int height, Scene* scene) : scene(scene)
+	Game::Game(const char* const title, Scene* scene) : scene(scene)
 	{
 		if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 		{
@@ -20,12 +21,19 @@ namespace Krengine
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-		window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
+		window = SDL_CreateWindow(title,
+								  SDL_WINDOWPOS_CENTERED,
+								  SDL_WINDOWPOS_CENTERED,
+								  0,
+								  0,
+								  SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_OPENGL);
 
 		if (window == nullptr)
 		{
 			Log(SDL_GetError());
 		}
+
+		Window::window = window;
 
 		context = SDL_GL_CreateContext(window);
 
@@ -56,9 +64,9 @@ namespace Krengine
 				this->scene->Init();
 			}
 
-			scene->Update();
+			this->scene->Update();
 
-			scene->Draw();
+			this->scene->Draw();
 
 			SDL_GL_SwapWindow(window);
 		}

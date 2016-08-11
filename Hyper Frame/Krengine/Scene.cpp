@@ -1,5 +1,6 @@
 #include "Camera.hpp"
 #include "Entity.hpp"
+#include "Input.hpp"
 #include "Maths.hpp"
 #include "Program.hpp"
 #include "Scene.hpp"
@@ -8,13 +9,10 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/transform.hpp>
 
+using namespace glm;
+
 namespace Krengine
 {
-	Scene::Scene(int width, int height) : width(width), height(height)
-	{
-		//
-	}
-
 	Scene::~Scene()
 	{
 		glUseProgram(0);
@@ -23,9 +21,9 @@ namespace Krengine
 		{
 			glDisableVertexAttribArray(position);
 
-			glDeleteBuffers(1, &entity->elementBuffer);
-			glDeleteBuffers(1, &entity->vertexBuffer);
-			glDeleteVertexArrays(1, &entity->vertexArray);
+			glDeleteBuffers(1, &entity->ElementBuffer);
+			glDeleteBuffers(1, &entity->VertexBuffer);
+			glDeleteVertexArrays(1, &entity->VertexArray);
 
 			delete entity;
 		}
@@ -44,15 +42,15 @@ namespace Krengine
 		{
 			entity->Init();
 
-			glGenVertexArrays(1, &entity->vertexArray);
-			glBindVertexArray(entity->vertexArray);
+			glGenVertexArrays(1, &entity->VertexArray);
+			glBindVertexArray(entity->VertexArray);
 
-			glGenBuffers(1, &entity->vertexBuffer);
-			glBindBuffer(GL_ARRAY_BUFFER, entity->vertexBuffer);
+			glGenBuffers(1, &entity->VertexBuffer);
+			glBindBuffer(GL_ARRAY_BUFFER, entity->VertexBuffer);
 			glBufferData(GL_ARRAY_BUFFER, entity->GetVerticesCount() * sizeof(float), entity->GetVertices(), GL_STATIC_DRAW);
 
-			glGenBuffers(1, &entity->elementBuffer);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, entity->elementBuffer);
+			glGenBuffers(1, &entity->ElementBuffer);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, entity->ElementBuffer);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, entity->GetElementsCount() * sizeof(int), entity->GetElements(), GL_STATIC_DRAW);
 
 			position = glGetAttribLocation(this->program->GetProgram(), "Pos");
@@ -87,29 +85,23 @@ namespace Krengine
 
 		for (Entity* entity : entities)
 		{
-			Matrix4 Model;
-			Model = glm::translate(Model, entity->position);
-			Model *= glm::rotate(Model, entity->rotation.z, Vector3(0.0f, 0.0f, 1.0f));
-			Model *= glm::rotate(Model, entity->rotation.y, Vector3(0.0f, 1.0f, 0.0f));
-			Model *= glm::rotate(Model, entity->rotation.x, Vector3(1.0f, 0.0f, 0.0f));
-			Model *= glm::scale(Model, entity->scale);
+			Model = translate(Matrix4(), entity->Position);
+			Model *= rotate(Model, entity->Rotation.z, Vector3(0.0f, 0.0f, 1.0f));
+			Model *= rotate(Model, entity->Rotation.y, Vector3(0.0f, 1.0f, 0.0f));
+			Model *= rotate(Model, entity->Rotation.x, Vector3(1.0f, 0.0f, 0.0f));
+			Model *= scale(Model, entity->Scale);
 			model = glGetUniformLocation(this->program->GetProgram(), "Model");
 			glUniformMatrix4fv(model, 1, GL_FALSE, value_ptr(Model));
 
-			glBindVertexArray(entity->vertexArray);
+			glBindVertexArray(entity->VertexArray);
 			glBindTexture(GL_TEXTURE_2D, entity->GetTexture()->GetTexture());
 			glDrawElements(GL_TRIANGLES, entity->GetElementsCount(), GL_UNSIGNED_INT, 0);
 		}
 	}
 
-	int Scene::GetWidth()
+	Entity* Scene::GetEntityUnderMouse()
 	{
-		return width;
-	}
-
-	int Scene::GetHeight()
-	{
-		return height;
+		return nullptr;
 	}
 
 	Scene* Scene::GetNextScene()

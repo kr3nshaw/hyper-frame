@@ -3,6 +3,7 @@
 
 #include "Camera.hpp"
 #include "Entity.hpp"
+#include "Maths.hpp"
 #include "Program.hpp"
 #include <GL/glew.h>
 #include <vector>
@@ -12,14 +13,12 @@ namespace Krengine
 	class Scene
 	{
 		public:
-			Scene(int width, int height);
 			virtual ~Scene();
 			virtual void Init() = 0;
 			virtual void Update();
 			virtual void Draw();
 
-			int GetWidth();
-			int GetHeight();
+			Entity* GetEntityUnderMouse();
 			Scene* GetNextScene();
 
 		protected:
@@ -32,12 +31,11 @@ namespace Krengine
 			Program* program = nullptr;
 			GLint position;
 			GLint texture;
-			GLint model;
-			GLint view;
 			GLint projection;
+			GLint view;
+			GLint model;
+			Matrix4 Model;
 
-			int width;
-			int height;
 			Scene* nextScene = nullptr;
 	};
 }

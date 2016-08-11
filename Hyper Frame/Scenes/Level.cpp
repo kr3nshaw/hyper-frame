@@ -8,6 +8,7 @@
 #include "../Krengine/Scene.hpp"
 #include "../Krengine/Shader.hpp"
 #include "../Krengine/Texture.hpp"
+#include "../Krengine/Window.hpp"
 #include <algorithm>
 #include <cmath>
 #include <cstdio>
@@ -16,14 +17,11 @@
 using namespace Krengine;
 using namespace std;
 
-Level::Level(int width, int height) : Scene(width, height)
-{
-	cubeSize = height / 3.0f;
-	cameraDistance = cubeSize * 2.0f;
-}
-
 void Level::Init()
 {
+	cubeSize = Window::GetHeight() / 3.0f;
+	cameraDistance = cubeSize * 2.0f;
+
 	Program* program = new Program(new Shader(true, Vertex, "./Shaders/vertex.vert"), new Shader(true, Fragment, "./Shaders/fragment.frag"));
 
 	vector<vector<Texture*>> cells;
@@ -117,15 +115,15 @@ void Level::Init()
 								Vector3(0.0f, 0.0f, 0.0f),
 								Vector3(0.0f, 1.0f, 0.0f),
 								74.0f,
-								(float)GetWidth() / (float)GetHeight(),
-								0.001f,
+								(float)Window::GetWidth() / (float)Window::GetHeight(),
+								1.0f,
 								1000.0f));
 }
 
 void Level::Update()
 {
-	float x = (min(max(GetHeight() / 3.0f, (float)Input::GetMouseY()), (2.0f / 3.0f) * GetHeight()) - (GetHeight() / 3.0f)) / (GetHeight() / 3.0f);
-	float y = (min(max(GetWidth() / 3.0f, (float)Input::GetMouseX()), (2.0f / 3.0f) * GetWidth()) - (GetWidth() / 3.0f)) / (GetWidth() / 3.0f);
+	float x = (min(max(Window::GetHeight() / 3.0f, (float)Input::GetMouseY()), (2.0f / 3.0f) * Window::GetHeight()) - (Window::GetHeight() / 3.0f)) / (Window::GetHeight() / 3.0f);
+	float y = (min(max(Window::GetWidth() / 3.0f, (float)Input::GetMouseX()), (2.0f / 3.0f) * Window::GetWidth()) - (Window::GetWidth() / 3.0f)) / (Window::GetWidth() / 3.0f);
 
 	x = (x * (M_PI / 2.0f)) + ((3.0f / 2.0f) * M_PI);
 	y *= M_PI / 2.0f;

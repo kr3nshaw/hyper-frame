@@ -1,7 +1,6 @@
 #include "Entity.hpp"
 #include "Maths.hpp"
 #include "Texture.hpp"
-#include <GL/glew.h>
 
 namespace Krengine
 {
@@ -30,9 +29,9 @@ namespace Krengine
 			this->elementsCount = elementsCount;
 			this->elements = elements;
 			this->texture = texture;
-			this->scale = scale;
-			this->rotation = rotation;
-			this->position = position;
+			this->Scale = scale;
+			this->Rotation = rotation;
+			this->Position = position;
 
 			created = true;
 		}

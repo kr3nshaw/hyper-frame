@@ -9,7 +9,7 @@ namespace Krengine
 	class Game
 	{
 		public:
-			Game(const char* const title, int width, int height, Scene* scene);
+			Game(const char* const title, Scene* scene);
 			~Game();
 			static void Log(const char* const entry);
 

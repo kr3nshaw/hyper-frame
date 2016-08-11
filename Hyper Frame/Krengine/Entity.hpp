@@ -10,12 +10,12 @@ namespace Krengine
 	class Entity
 	{
 		public:
-			Vector3 scale;
-			Vector3 rotation;
-			Vector3 position;
-			GLuint vertexArray;
-			GLuint vertexBuffer;
-			GLuint elementBuffer;
+			Vector3 Scale;
+			Vector3 Rotation;
+			Vector3 Position;
+			GLuint VertexArray;
+			GLuint VertexBuffer;
+			GLuint ElementBuffer;
 
 			virtual ~Entity();
 			virtual void Init() = 0;

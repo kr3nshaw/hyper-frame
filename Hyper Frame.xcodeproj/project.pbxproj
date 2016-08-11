@@ -15,6 +15,7 @@
 		861286171D59C6D800BD448A /* Shaders in CopyFiles */ = {isa = PBXBuildFile; fileRef = 861286151D59C6D100BD448A /* Shaders */; };
 		8612861A1D59C78F00BD448A /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 861286181D59C78F00BD448A /* Texture.cpp */; };
 		8612861C1D59DC7600BD448A /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8612861B1D59DC7600BD448A /* SDL2_image.framework */; };
+		8632F7BF1D5CA67B003892EA /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8632F7BD1D5CA67B003892EA /* Window.cpp */; };
 		8640B7F31D54CF15004AE69F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8640B7F21D54CF15004AE69F /* main.cpp */; };
 		8640B7FA1D54CFA6004AE69F /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8640B7F91D54CFA6004AE69F /* SDL2.framework */; };
 		8640B8011D54D735004AE69F /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8640B7FF1D54D735004AE69F /* Game.cpp */; };
@@ -52,6 +53,8 @@
 		861286181D59C78F00BD448A /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = Krengine/Texture.cpp; sourceTree = "<group>"; };
 		861286191D59C78F00BD448A /* Texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Texture.hpp; path = Krengine/Texture.hpp; sourceTree = "<group>"; };
 		8612861B1D59DC7600BD448A /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		8632F7BD1D5CA67B003892EA /* Window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Window.cpp; path = Krengine/Window.cpp; sourceTree = "<group>"; };
+		8632F7BE1D5CA67B003892EA /* Window.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Window.hpp; path = Krengine/Window.hpp; sourceTree = "<group>"; };
 		8640B7EF1D54CF15004AE69F /* Hyper Frame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Hyper Frame"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8640B7F21D54CF15004AE69F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		8640B7F91D54CFA6004AE69F /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 				860C27971D57628300F3CC9E /* Shader.hpp */,
 				861286181D59C78F00BD448A /* Texture.cpp */,
 				861286191D59C78F00BD448A /* Texture.hpp */,
+				8632F7BD1D5CA67B003892EA /* Window.cpp */,
+				8632F7BE1D5CA67B003892EA /* Window.hpp */,
 			);
 			name = Krengine;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 				860C27951D575F4300F3CC9E /* Program.cpp in Sources */,
 				8640B8091D54DEEE004AE69F /* Level.cpp in Sources */,
 				8640B8011D54D735004AE69F /* Game.cpp in Sources */,
+				8632F7BF1D5CA67B003892EA /* Window.cpp in Sources */,
 				86D5BE961D56EAE2001DEC45 /* Entity.cpp in Sources */,
 				86B78BEE1D5B0A8400C46481 /* Cell.cpp in Sources */,
 				86479F631D55B8BA004CD32B /* Input.cpp in Sources */,
