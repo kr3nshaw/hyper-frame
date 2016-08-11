@@ -15,10 +15,10 @@ Cell::Cell(Vector3 face, int size, int dimension, Vector2 gridPosition, Texture*
 
 	if (face.x == 1.0f)
 	{
-		float y1 = start + (gridPosition.x * cellSize);
-		float z1 = start + (gridPosition.y * cellSize);
-		float y2 = start + (gridPosition.x * cellSize) + cellSize;
-		float z2 = start + (gridPosition.y * cellSize) + cellSize;
+		float y1 = -(start + (gridPosition.y * cellSize));
+		float z1 = -(start + (gridPosition.x * cellSize));
+		float y2 = -(start + (gridPosition.y * cellSize) + cellSize);
+		float z2 = -(start + (gridPosition.x * cellSize) + cellSize);
 
 		v[0] = cubeSize;	v[1] = y1;	v[2] = z1;	v[3] = 0.0f;	v[4] = 0.0f;
 		v[5] = cubeSize;	v[6] = y2;	v[7] = z1;	v[8] = 1.0f;	v[9] = 0.0f;
@@ -40,9 +40,9 @@ Cell::Cell(Vector3 face, int size, int dimension, Vector2 gridPosition, Texture*
 	else if (face.z == 1.0f)
 	{
 		float x1 = start + (gridPosition.x * cellSize);
-		float y1 = start + (gridPosition.y * cellSize);
+		float y1 = -(start + (gridPosition.y * cellSize));
 		float x2 = start + (gridPosition.x * cellSize) + cellSize;
-		float y2 = start + (gridPosition.y * cellSize) + cellSize;
+		float y2 = -(start + (gridPosition.y * cellSize) + cellSize);
 
 		v[0] = x1;	v[1] = y1;	v[2] = cubeSize;	v[3] = 0.0f;	v[4] = 0.0f;
 		v[5] = x2;	v[6] = y1;	v[7] = cubeSize;	v[8] = 1.0f;	v[9] = 0.0f;

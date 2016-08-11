@@ -16,16 +16,19 @@ namespace Krengine
 		{
 			FILE* file = fopen(data, "r");
 
-			fseek(file, 0, SEEK_END);
-			long fileSize = ftell(file);
-			rewind(file);
+			if (file != nullptr)
+			{
+				fseek(file, 0, SEEK_END);
+				long fileSize = ftell(file);
+				rewind(file);
 
-			this->data = (char*)malloc((fileSize + 1) * sizeof(char));
+				this->data = (char*)malloc((fileSize + 1) * sizeof(char));
 
-			fread(this->data, sizeof(char), fileSize, file);
-			this->data[fileSize] = '\0';
+				fread(this->data, sizeof(char), fileSize, file);
+				this->data[fileSize] = '\0';
 
-			fclose(file);
+				fclose(file);
+			}
 		}
 	}
 
