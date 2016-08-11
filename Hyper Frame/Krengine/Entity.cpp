@@ -61,4 +61,9 @@ namespace Krengine
 	{
 		return texture;
 	}
+
+	void Entity::SetTexture(Texture* texture)
+	{
+		this->texture = texture;
+	}
 }

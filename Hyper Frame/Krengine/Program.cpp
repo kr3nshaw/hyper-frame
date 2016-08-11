@@ -15,8 +15,8 @@ namespace Krengine
 	{
 		if (created)
 		{
-			glDetachShader(program, this->fragmentShader->GetShader());
-			glDetachShader(program, this->vertexShader->GetShader());
+			glDetachShader(program, fragmentShader->GetShader());
+			glDetachShader(program, vertexShader->GetShader());
 
 			glDeleteProgram(program);
 		}
@@ -34,8 +34,8 @@ namespace Krengine
 			vertexShader->Init();
 			fragmentShader->Init();
 
-			glAttachShader(program, this->vertexShader->GetShader());
-			glAttachShader(program, this->fragmentShader->GetShader());
+			glAttachShader(program, vertexShader->GetShader());
+			glAttachShader(program, fragmentShader->GetShader());
 
 			glLinkProgram(program);
 

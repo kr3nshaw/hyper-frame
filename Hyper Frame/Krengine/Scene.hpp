@@ -29,6 +29,7 @@ namespace Krengine
 
 		private:
 			Program* program = nullptr;
+			Program* picking = nullptr;
 			GLint position;
 			GLint texture;
 			GLint projection;

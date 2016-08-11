@@ -36,6 +36,8 @@ namespace Krengine
 					  Vector3 rotation,
 					  Vector3 position);
 
+			void SetTexture(Texture* texture);
+
 		private:
 			bool created = false;
 

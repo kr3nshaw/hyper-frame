@@ -5,7 +5,7 @@
 
 using namespace Krengine;
 
-Cell::Cell(Vector3 face, int size, int dimension, Vector2 gridPosition, Texture* texture)
+Cell::Cell(Vector3 face, int size, int dimension, Vector2 gridPosition, Texture* texture) : face(face), gridPosition(gridPosition)
 {
 	const float start = -(size / 2.0f);
 	const float cellSize = (float)size / (float)dimension;
@@ -65,4 +65,19 @@ Cell::Cell(Vector3 face, int size, int dimension, Vector2 gridPosition, Texture*
 void Cell::Init()
 {
 	//
+}
+
+Vector3 Cell::GetFace()
+{
+	return face;
+}
+
+Vector2 Cell::GetGridPosition()
+{
+	return gridPosition;
+}
+
+void Cell::SetTexture(Texture* texture)
+{
+	Entity::SetTexture(texture);
 }

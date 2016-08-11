@@ -2,6 +2,7 @@
 #define Level_hpp
 
 #include "../Krengine/Scene.hpp"
+#include <vector>
 
 using namespace Krengine;
 
@@ -15,6 +16,7 @@ class Level : public Scene
 	private:
 		int cubeSize;
 		float cameraDistance;
+		std::vector<std::vector<Texture*>> cellTextures;
 };
 
 #endif

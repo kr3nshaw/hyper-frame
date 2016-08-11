@@ -24,38 +24,36 @@ void Level::Init()
 
 	Program* program = new Program(new Shader(true, Vertex, "./Shaders/vertex.vert"), new Shader(true, Fragment, "./Shaders/fragment.frag"));
 
-	vector<vector<Texture*>> cells;
-
-	cells.push_back({ new Texture("./Graphics/Cells/Blank.png"),
-					  new Texture("./Graphics/Cells/Blocked.png") });
-	cells.push_back({ new Texture("./Graphics/Cells/Red/Marker.png"),
-					  new Texture("./Graphics/Cells/Red/CurrentMarker.png"),
-					  new Texture("./Graphics/Cells/Red/LinkedMarker.png"),
-					  new Texture("./Graphics/Cells/Red/Link.png") });
-	cells.push_back({ new Texture("./Graphics/Cells/Orange/Marker.png"),
-					  new Texture("./Graphics/Cells/Orange/CurrentMarker.png"),
-					  new Texture("./Graphics/Cells/Orange/LinkedMarker.png"),
-					  new Texture("./Graphics/Cells/Orange/Link.png") });
-	cells.push_back({ new Texture("./Graphics/Cells/Yellow/Marker.png"),
-					  new Texture("./Graphics/Cells/Yellow/CurrentMarker.png"),
-					  new Texture("./Graphics/Cells/Yellow/LinkedMarker.png"),
-					  new Texture("./Graphics/Cells/Yellow/Link.png") });
-	cells.push_back({ new Texture("./Graphics/Cells/Green/Marker.png"),
-					  new Texture("./Graphics/Cells/Green/CurrentMarker.png"),
-					  new Texture("./Graphics/Cells/Green/LinkedMarker.png"),
-					  new Texture("./Graphics/Cells/Green/Link.png") });
-	cells.push_back({ new Texture("./Graphics/Cells/Blue/Marker.png"),
-					  new Texture("./Graphics/Cells/Blue/CurrentMarker.png"),
-					  new Texture("./Graphics/Cells/Blue/LinkedMarker.png"),
-					  new Texture("./Graphics/Cells/Blue/Link.png") });
-	cells.push_back({ new Texture("./Graphics/Cells/Blue/Marker.png"),
-					  new Texture("./Graphics/Cells/Blue/CurrentMarker.png"),
-					  new Texture("./Graphics/Cells/Blue/LinkedMarker.png"),
-					  new Texture("./Graphics/Cells/Blue/Link.png") });
-	cells.push_back({ new Texture("./Graphics/Cells/Purple/Marker.png"),
-					  new Texture("./Graphics/Cells/Purple/CurrentMarker.png"),
-					  new Texture("./Graphics/Cells/Purple/LinkedMarker.png"),
-					  new Texture("./Graphics/Cells/Purple/Link.png") });
+	cellTextures.push_back({ new Texture("./Graphics/Cells/Blank.png"),
+							 new Texture("./Graphics/Cells/Blocked.png") });
+	cellTextures.push_back({ new Texture("./Graphics/Cells/Red/Marker.png"),
+							 new Texture("./Graphics/Cells/Red/CurrentMarker.png"),
+							 new Texture("./Graphics/Cells/Red/LinkedMarker.png"),
+							 new Texture("./Graphics/Cells/Red/Link.png") });
+	cellTextures.push_back({ new Texture("./Graphics/Cells/Orange/Marker.png"),
+							 new Texture("./Graphics/Cells/Orange/CurrentMarker.png"),
+							 new Texture("./Graphics/Cells/Orange/LinkedMarker.png"),
+							 new Texture("./Graphics/Cells/Orange/Link.png") });
+	cellTextures.push_back({ new Texture("./Graphics/Cells/Yellow/Marker.png"),
+							 new Texture("./Graphics/Cells/Yellow/CurrentMarker.png"),
+							 new Texture("./Graphics/Cells/Yellow/LinkedMarker.png"),
+							 new Texture("./Graphics/Cells/Yellow/Link.png") });
+	cellTextures.push_back({ new Texture("./Graphics/Cells/Green/Marker.png"),
+							 new Texture("./Graphics/Cells/Green/CurrentMarker.png"),
+							 new Texture("./Graphics/Cells/Green/LinkedMarker.png"),
+							 new Texture("./Graphics/Cells/Green/Link.png") });
+	cellTextures.push_back({ new Texture("./Graphics/Cells/Blue/Marker.png"),
+							 new Texture("./Graphics/Cells/Blue/CurrentMarker.png"),
+							 new Texture("./Graphics/Cells/Blue/LinkedMarker.png"),
+							 new Texture("./Graphics/Cells/Blue/Link.png") });
+	cellTextures.push_back({ new Texture("./Graphics/Cells/Blue/Marker.png"),
+							 new Texture("./Graphics/Cells/Blue/CurrentMarker.png"),
+							 new Texture("./Graphics/Cells/Blue/LinkedMarker.png"),
+							 new Texture("./Graphics/Cells/Blue/Link.png") });
+	cellTextures.push_back({ new Texture("./Graphics/Cells/Purple/Marker.png"),
+							 new Texture("./Graphics/Cells/Purple/CurrentMarker.png"),
+							 new Texture("./Graphics/Cells/Purple/LinkedMarker.png"),
+							 new Texture("./Graphics/Cells/Purple/Link.png") });
 
 
 	FILE* file = fopen("./Cubes/1.hfc", "rb");
@@ -83,7 +81,11 @@ void Level::Init()
 				{
 					fread(&cell, 1, 1, file);
 
-					entities.push_back(new Cell(Vector3(1.0f, 0.0f, 0.0f), cubeSize, dimension, Vector2(x, y), cells[(0xF0 & cell) >> 4][0x0F & cell]));
+					entities.push_back(new Cell(Vector3(1.0f, 0.0f, 0.0f),
+												cubeSize,
+												dimension,
+												Vector2(x, y),
+												cellTextures[(0xF0 & cell) >> 4][0x0F & cell]));
 				}
 			}
 
@@ -93,7 +95,11 @@ void Level::Init()
 				{
 					fread(&cell, 1, 1, file);
 
-					entities.push_back(new Cell(Vector3(0.0f, 1.0f, 0.0f), cubeSize, dimension, Vector2(x, y), cells[(0xF0 & cell) >> 4][0x0F & cell]));
+					entities.push_back(new Cell(Vector3(0.0f, 1.0f, 0.0f),
+												cubeSize,
+												dimension,
+												Vector2(x, y),
+												cellTextures[(0xF0 & cell) >> 4][0x0F & cell]));
 				}
 			}
 
@@ -103,7 +109,11 @@ void Level::Init()
 				{
 					fread(&cell, 1, 1, file);
 
-					entities.push_back(new Cell(Vector3(0.0f, 0.0f, 1.0f), cubeSize, dimension, Vector2(x, y), cells[(0xF0 & cell) >> 4][0x0F & cell]));
+					entities.push_back(new Cell(Vector3(0.0f, 0.0f, 1.0f),
+												cubeSize,
+												dimension,
+												Vector2(x, y),
+												cellTextures[(0xF0 & cell) >> 4][0x0F & cell]));
 				}
 			}
 		}
@@ -122,6 +132,18 @@ void Level::Init()
 
 void Level::Update()
 {
+	if (Input::GetMouse1())
+	{
+		Entity* entity = GetEntityUnderMouse();
+
+		if (entity != nullptr)
+		{
+			Cell* cell = reinterpret_cast<Cell*>(GetEntityUnderMouse());
+
+			cell->SetTexture(cellTextures[0][0]);
+		}
+	}
+
 	float x = (min(max(Window::GetHeight() / 3.0f, (float)Input::GetMouseY()), (2.0f / 3.0f) * Window::GetHeight()) - (Window::GetHeight() / 3.0f)) / (Window::GetHeight() / 3.0f);
 	float y = (min(max(Window::GetWidth() / 3.0f, (float)Input::GetMouseX()), (2.0f / 3.0f) * Window::GetWidth()) - (Window::GetWidth() / 3.0f)) / (Window::GetWidth() / 3.0f);
 
