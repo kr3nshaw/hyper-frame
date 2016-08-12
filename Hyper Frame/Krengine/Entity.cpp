@@ -33,6 +33,8 @@ namespace Krengine
 			this->Rotation = rotation;
 			this->Position = position;
 
+			this->texture->Init();
+
 			created = true;
 		}
 	}

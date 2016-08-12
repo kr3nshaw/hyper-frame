@@ -4,22 +4,53 @@
 #include "../Krengine/Entity.hpp"
 #include "../Krengine/Maths.hpp"
 #include "../Krengine/Texture.hpp"
+#include <vector>
 
 using namespace Krengine;
+using namespace std;
+
+enum CellColour
+{
+	Special,
+	Red,
+	Orange,
+	Yellow,
+	Green,
+	Blue,
+	Blue2,
+	Purple
+};
+
+enum CellType
+{
+	Marker,
+	CurrentMarker,
+	LinkedMarker,
+	Link
+};
+
+const CellType Blank = Marker;
+const CellType Blocked = CurrentMarker;
 
 class Cell : public Entity
 {
 	public:
-		Cell(Vector3 face, int size, int dimension, Vector2 gridPosition, Texture* texture);
+		Cell(Vector3 face, int size, int dimension, Vector2 gridPosition, CellColour colour, CellType type, vector<vector<Texture*>>* cellTextures);
 		void Init();
 
 		Vector3 GetFace();
 		Vector2 GetGridPosition();
-		void SetTexture(Texture* texture);
+		CellColour GetColour();
+		CellType GetType();
+		void SetCell(CellColour colour, CellType type);
 
 	private:
 		Vector3 face;
 		Vector2 gridPosition;
+		CellColour colour;
+		CellType type;
+		vector<vector<Texture*>>* cellTextures;
+
 };
 
 #endif

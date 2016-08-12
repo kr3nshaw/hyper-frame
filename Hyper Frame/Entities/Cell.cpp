@@ -2,10 +2,18 @@
 #include "../Krengine/Entity.hpp"
 #include "../Krengine/Maths.hpp"
 #include "../Krengine/Texture.hpp"
+#include <vector>
 
 using namespace Krengine;
+using namespace std;
 
-Cell::Cell(Vector3 face, int size, int dimension, Vector2 gridPosition, Texture* texture) : face(face), gridPosition(gridPosition)
+Cell::Cell(Vector3 face,
+		   int size,
+		   int dimension,
+		   Vector2 gridPosition,
+		   CellColour colour,
+		   CellType type,
+		   vector<vector<Texture*>>* cellTextures) : face(face), gridPosition(gridPosition), colour(colour), type(type), cellTextures(cellTextures)
 {
 	const float start = -(size / 2.0f);
 	const float cellSize = (float)size / (float)dimension;
@@ -59,7 +67,7 @@ Cell::Cell(Vector3 face, int size, int dimension, Vector2 gridPosition, Texture*
 	e[4] = 3;
 	e[5] = 1;
 
-	Entity::Init(20, v, 6, e, texture, Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
+	Entity::Init(20, v, 6, e, (*cellTextures)[this->colour][this->type], Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
 }
 
 void Cell::Init()
@@ -77,7 +85,19 @@ Vector2 Cell::GetGridPosition()
 	return gridPosition;
 }
 
-void Cell::SetTexture(Texture* texture)
+CellColour Cell::GetColour()
 {
-	Entity::SetTexture(texture);
+	return colour;
+}
+
+CellType Cell::GetType()
+{
+	return type;
+}
+
+void Cell::SetCell(CellColour colour, CellType type)
+{
+	this->colour = colour;
+	this->type = type;
+	SetTexture((*cellTextures)[this->colour][this->type]);
 }

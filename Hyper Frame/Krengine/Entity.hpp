@@ -13,9 +13,6 @@ namespace Krengine
 			Vector3 Scale;
 			Vector3 Rotation;
 			Vector3 Position;
-			GLuint VertexArray;
-			GLuint VertexBuffer;
-			GLuint ElementBuffer;
 
 			virtual ~Entity();
 			virtual void Init() = 0;

@@ -85,7 +85,9 @@ void Level::Init()
 												cubeSize,
 												dimension,
 												Vector2(x, y),
-												cellTextures[(0xF0 & cell) >> 4][0x0F & cell]));
+												static_cast<CellColour>((0xF0 & cell) >> 4),
+												static_cast<CellType>(0x0F & cell),
+												&cellTextures));
 				}
 			}
 
@@ -99,7 +101,9 @@ void Level::Init()
 												cubeSize,
 												dimension,
 												Vector2(x, y),
-												cellTextures[(0xF0 & cell) >> 4][0x0F & cell]));
+												static_cast<CellColour>((0xF0 & cell) >> 4),
+												static_cast<CellType>(0x0F & cell),
+												&cellTextures));
 				}
 			}
 
@@ -113,7 +117,9 @@ void Level::Init()
 												cubeSize,
 												dimension,
 												Vector2(x, y),
-												cellTextures[(0xF0 & cell) >> 4][0x0F & cell]));
+												static_cast<CellColour>((0xF0 & cell) >> 4),
+												static_cast<CellType>(0x0F & cell),
+												&cellTextures));
 				}
 			}
 		}
@@ -139,8 +145,6 @@ void Level::Update()
 		if (entity != nullptr)
 		{
 			Cell* cell = reinterpret_cast<Cell*>(GetEntityUnderMouse());
-
-			cell->SetTexture(cellTextures[0][0]);
 		}
 	}
 

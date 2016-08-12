@@ -1,10 +1,12 @@
 #ifndef Level_hpp
 #define Level_hpp
 
+#include "Cell.hpp"
 #include "../Krengine/Scene.hpp"
 #include <vector>
 
 using namespace Krengine;
+using namespace std;
 
 class Level : public Scene
 {
@@ -16,7 +18,8 @@ class Level : public Scene
 	private:
 		int cubeSize;
 		float cameraDistance;
-		std::vector<std::vector<Texture*>> cellTextures;
+		vector<vector<Texture*>> cellTextures;
+		CellColour currentColour = Special;
 };
 
 #endif

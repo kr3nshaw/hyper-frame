@@ -30,6 +30,9 @@ namespace Krengine
 		private:
 			Program* program = nullptr;
 			Program* picking = nullptr;
+			GLuint vertexArray;
+			GLuint vertexBuffer;
+			GLuint elementBuffer;
 			GLint position;
 			GLint texture;
 			GLint projection;
@@ -38,6 +41,8 @@ namespace Krengine
 			Matrix4 Model;
 
 			Scene* nextScene = nullptr;
+
+			void SetProgram(Program* program);
 	};
 }
 
