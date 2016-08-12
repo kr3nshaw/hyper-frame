@@ -20,6 +20,7 @@ class Level : public Scene
 		float cameraDistance;
 		vector<vector<Texture*>> cellTextures;
 		CellColour currentColour = Special;
+		bool drawing = false;
 };
 
 #endif

@@ -55,6 +55,13 @@ void Level::Init()
 							 new Texture("./Graphics/Cells/Purple/LinkedMarker.png"),
 							 new Texture("./Graphics/Cells/Purple/Link.png") });
 
+	for (vector<Texture*> vector : cellTextures)
+	{
+		for (Texture* texture : vector)
+		{
+			texture->Init();
+		}
+	}
 
 	FILE* file = fopen("./Cubes/1.hfc", "rb");
 
@@ -145,7 +152,26 @@ void Level::Update()
 		if (entity != nullptr)
 		{
 			Cell* cell = reinterpret_cast<Cell*>(GetEntityUnderMouse());
+
+			if (!drawing && (cell->GetColour() != Special) && (cell->GetType() != Link))
+			{
+				currentColour = cell->GetColour();
+			}
+
+			if (currentColour != Special)
+			{
+				if (((cell->GetColour() == Special) && (cell->GetType() == Blank)) || (cell->GetType() == Link))
+				{
+					cell->SetCell(currentColour, Link);
+				}
+			}
+
+			drawing = true;
 		}
+	}
+	else
+	{
+		drawing = false;
 	}
 
 	float x = (min(max(Window::GetHeight() / 3.0f, (float)Input::GetMouseY()), (2.0f / 3.0f) * Window::GetHeight()) - (Window::GetHeight() / 3.0f)) / (Window::GetHeight() / 3.0f);
