@@ -24,6 +24,7 @@ namespace Krengine
 		protected:
 			std::vector<Entity*> entities;
 			Camera camera;
+			Scene* nextScene = nullptr;
 
 			void Init(Program* program, Camera camera);
 
@@ -39,8 +40,6 @@ namespace Krengine
 			GLint view;
 			GLint model;
 			Matrix4 Model;
-
-			Scene* nextScene = nullptr;
 
 			void SetProgram(Program* program);
 	};

@@ -18,7 +18,7 @@ enum CellColour
 	Green,
 	Blue,
 	Blue2,
-	Purple
+	Purple,
 };
 
 enum CellType
