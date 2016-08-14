@@ -14,7 +14,6 @@ namespace Krengine
 			static void Log(const char* const entry);
 
 		private:
-			SDL_Window* window = nullptr;
 			SDL_GLContext context;
 			Scene* scene = nullptr;
 	};

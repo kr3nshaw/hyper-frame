@@ -2,9 +2,9 @@
 
 out vec4 Colour;
 
-uniform int Code;
+uniform int in_code;
 
 void main()
 {
-	Colour = vec4(Code / 255.0);
+	Colour = vec4(in_code / 255.0);
 }

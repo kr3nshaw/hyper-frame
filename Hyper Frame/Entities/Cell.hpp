@@ -16,8 +16,8 @@ enum CellColour
 	Orange,
 	Yellow,
 	Green,
-	Blue,
-	Blue2,
+	LightBlue,
+	DarkBlue,
 	Purple,
 };
 
@@ -35,7 +35,7 @@ const CellType Blocked = CurrentMarker;
 class Cell : public Entity
 {
 	public:
-		Cell(Vector3 face, int size, int dimension, Vector2 gridPosition, CellColour colour, CellType type, vector<vector<Texture*>>* cellTextures);
+		Cell(Vector3 face, Vector2 gridPosition, CellColour colour, CellType type, vector<vector<Texture*>>* cellTextures, int size, int dimension);
 		void Init();
 
 		Vector3 GetFace();

@@ -23,7 +23,6 @@ namespace Krengine
 				rewind(file);
 
 				this->data = (char*)malloc((fileSize + 1) * sizeof(char));
-
 				fread(this->data, sizeof(char), fileSize, file);
 				this->data[fileSize] = '\0';
 

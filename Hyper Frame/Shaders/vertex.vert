@@ -1,16 +1,16 @@
 #version 150 core
 
-in vec3 Pos;
-in vec2 tex;
+in vec3 in_position;
+in vec2 in_texture;
 
-out vec2 Tex;
+out vec2 Texture;
 
-uniform mat4 Model;
-uniform mat4 View;
-uniform mat4 Projection;
+uniform mat4 in_model;
+uniform mat4 in_view;
+uniform mat4 in_projection;
 
 void main()
 {
-	gl_Position = Projection * View * Model * vec4(Pos, 1.0);
-	Tex = tex;
+	gl_Position = in_projection * in_view * in_model * vec4(in_position, 1.0);
+	Texture = in_texture;
 }

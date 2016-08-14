@@ -1,7 +1,7 @@
-#ifndef Level_hpp
-#define Level_hpp
+#ifndef Cube_hpp
+#define Cube_hpp
 
-#include "Cell.hpp"
+#include "../Entities/Cell.hpp"
 #include "../Krengine/Scene.hpp"
 #include <unordered_map>
 #include <vector>
@@ -9,7 +9,7 @@
 using namespace Krengine;
 using namespace std;
 
-class Level : public Scene
+class Cube : public Scene
 {
 	public:
 		void Init();

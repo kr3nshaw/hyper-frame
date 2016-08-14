@@ -111,15 +111,15 @@ namespace Krengine
 			Model *= scale(Model, entities[i]->Scale);
 			glUniformMatrix4fv(model, 1, GL_FALSE, value_ptr(Model));
 
-			glProgramUniform1i(picking->GetProgram(), glGetUniformLocation(picking->GetProgram(), "Code"), i + 1);
+			glProgramUniform1i(picking->GetProgram(), glGetUniformLocation(picking->GetProgram(), "in_code"), i + 1);
 
 			glDrawElements(GL_TRIANGLES, entities[i]->GetElementsCount(), GL_UNSIGNED_INT, 0);
 		}
 
-		unsigned char id[4];
 		GLint viewport[4];
-
 		glGetIntegerv(GL_VIEWPORT, viewport);
+
+		unsigned char id[4];
 		glReadPixels(Input::GetMouseX(), viewport[3] - Input::GetMouseY(), 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &id);
 
 		SetProgram(program);
@@ -141,16 +141,16 @@ namespace Krengine
 	{
 		glUseProgram(program->GetProgram());
 
-		position = glGetAttribLocation(program->GetProgram(), "Pos");
+		position = glGetAttribLocation(program->GetProgram(), "in_position");
 		glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 0);
 		glEnableVertexAttribArray(position);
 
-		texture = glGetAttribLocation(program->GetProgram(), "tex");
+		texture = glGetAttribLocation(program->GetProgram(), "in_texture");
 		glVertexAttribPointer(texture, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(GL_FLOAT)));
 		glEnableVertexAttribArray(texture);
 
-		projection = glGetUniformLocation(program->GetProgram(), "Projection");
-		view = glGetUniformLocation(program->GetProgram(), "View");
-		model = glGetUniformLocation(program->GetProgram(), "Model");
+		projection = glGetUniformLocation(program->GetProgram(), "in_projection");
+		view = glGetUniformLocation(program->GetProgram(), "in_view");
+		model = glGetUniformLocation(program->GetProgram(), "in_model");
 	}
 }

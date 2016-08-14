@@ -21,21 +21,22 @@ namespace Krengine
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-		window = SDL_CreateWindow(title,
+		SDL_DisplayMode displayMode;
+		SDL_GetDisplayMode(0, 0, &displayMode);
+
+		Window::window = SDL_CreateWindow(title,
 								  SDL_WINDOWPOS_CENTERED,
 								  SDL_WINDOWPOS_CENTERED,
-								  0,
-								  0,
+								  displayMode.w,
+								  displayMode.h,
 								  SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_OPENGL);
 
-		if (window == nullptr)
+		if (Window::window == nullptr)
 		{
 			Log(SDL_GetError());
 		}
 
-		Window::window = window;
-
-		context = SDL_GL_CreateContext(window);
+		context = SDL_GL_CreateContext(Window::window);
 
 		if (context == nullptr)
 		{
@@ -68,7 +69,7 @@ namespace Krengine
 
 			this->scene->Draw();
 
-			SDL_GL_SwapWindow(window);
+			SDL_GL_SwapWindow(Window::window);
 		}
 	}
 
@@ -78,7 +79,7 @@ namespace Krengine
 
 		SDL_GL_DeleteContext(context);
 
-		SDL_DestroyWindow(window);
+		SDL_DestroyWindow(Window::window);
 
 		SDL_Quit();
 	}

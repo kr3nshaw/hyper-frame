@@ -1,5 +1,5 @@
-#include "Cell.hpp"
-#include "Level.hpp"
+#include "Cube.hpp"
+#include "../Entities/Cell.hpp"
 #include "../Krengine/Camera.hpp"
 #include "../Krengine/Entity.hpp"
 #include "../Krengine/Input.hpp"
@@ -18,11 +18,15 @@
 using namespace Krengine;
 using namespace std;
 
-int Level::cube = 0;
+int Cube::cube = 0;
 
-void Level::Init()
+void Cube::Init()
 {
-	++cube;
+	if (++cube > 40)
+	{
+		cube = 1;
+	}
+
 	cubeSize = Window::GetHeight() / 3.0f;
 	cameraDistance = cubeSize * 2.0f;
 
@@ -99,12 +103,12 @@ void Level::Init()
 					fread(&cell, 1, 1, file);
 
 					cells[0][y].push_back(new Cell(Vector3(1.0f, 0.0f, 0.0f),
-												   cubeSize,
-												   dimension,
 												   Vector2(x, y),
 												   static_cast<CellColour>((0xF0 & cell) >> 4),
 												   static_cast<CellType>(0x0F & cell),
-												   &cellTextures));
+												   &cellTextures,
+												   cubeSize,
+												   dimension));
 					entities.push_back(cells[0][y][x]);
 
 					if ((cells[0][y][x]->GetColour() != Special) && (cells[0][y][x]->GetType() != Link))
@@ -125,12 +129,12 @@ void Level::Init()
 					fread(&cell, 1, 1, file);
 
 					cells[1][y].push_back(new Cell(Vector3(0.0f, 1.0f, 0.0f),
-												   cubeSize,
-												   dimension,
 												   Vector2(x, y),
 												   static_cast<CellColour>((0xF0 & cell) >> 4),
 												   static_cast<CellType>(0x0F & cell),
-												   &cellTextures));
+												   &cellTextures,
+												   cubeSize,
+												   dimension));
 					entities.push_back(cells[1][y][x]);
 
 					if ((cells[1][y][x]->GetColour() != Special) && (cells[1][y][x]->GetType() != Link))
@@ -151,12 +155,12 @@ void Level::Init()
 					fread(&cell, 1, 1, file);
 
 					cells[2][y].push_back(new Cell(Vector3(0.0f, 0.0f, 1.0f),
-												   cubeSize,
-												   dimension,
 												   Vector2(x, y),
 												   static_cast<CellColour>((0xF0 & cell) >> 4),
 												   static_cast<CellType>(0x0F & cell),
-												   &cellTextures));
+												   &cellTextures,
+												   cubeSize,
+												   dimension));
 					entities.push_back(cells[2][y][x]);
 
 					if ((cells[2][y][x]->GetColour() != Special) && (cells[2][y][x]->GetType() != Link))
@@ -310,7 +314,7 @@ void Level::Init()
 								1000.0f));
 }
 
-void Level::Update()
+void Cube::Update()
 {
 	if (Input::GetMouse1())
 	{
@@ -365,7 +369,7 @@ void Level::Update()
 
 					if (linkedMarkers.empty())
 					{
-						nextScene = new Level();
+						nextScene = new Cube();
 					}
 				}
 			}
@@ -391,13 +395,13 @@ void Level::Update()
 	Scene::Update();
 }
 
-void Level::Draw()
+void Cube::Draw()
 {
 	Scene::Draw();
 }
 
 
-bool Level::MarkersLinked(Cell* cell)
+bool Cube::MarkersLinked(Cell* cell)
 {
 	bool linked = markersLinked(cell);
 
@@ -406,7 +410,7 @@ bool Level::MarkersLinked(Cell* cell)
 	return linked;
 }
 
-bool Level::markersLinked(Cell* cell)
+bool Cube::markersLinked(Cell* cell)
 {
 	searched.insert(make_pair(cell, true));
 
