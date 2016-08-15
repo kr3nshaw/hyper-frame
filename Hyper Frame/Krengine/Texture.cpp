@@ -1,6 +1,11 @@
 #include "Texture.hpp"
 #include <GL/glew.h>
+
+#ifdef __linux__
+#include <SDL2/SDL_image.h>
+#else
 #include <SDL2_image/SDL_image.h>
+#endif
 
 namespace Krengine
 {

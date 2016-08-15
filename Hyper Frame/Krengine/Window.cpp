@@ -1,5 +1,4 @@
 #include "Window.hpp"
-#include <SDL2/sdl.h>
 
 namespace Krengine
 {
