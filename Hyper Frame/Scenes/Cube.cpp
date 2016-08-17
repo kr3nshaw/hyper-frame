@@ -288,18 +288,18 @@ void Cube::Init()
 					{
 						n.push_back(cells[2][y][x + 1]);
 					}
-					
+
 					if (y != (dimension - 1))
 					{
 						n.push_back(cells[2][y + 1][x]);
 					}
-					
+
 					if (x != 0)
 					{
 						n.push_back(cells[2][y][x - 1]);
 					}
 				}
-				
+
 				neighbours.insert(make_pair(cell, n));
 			}
 		}

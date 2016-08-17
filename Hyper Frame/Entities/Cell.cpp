@@ -18,7 +18,7 @@ Cell::Cell(Vector3 face,
 	const float start = -(size / 2.0f);
 	const float cellSize = (float)size / (float)dimension;
 	const float cubeSize = size / 2.0f;
-	
+
 	float* v = new float[20];
 
 	if (face.x == 1.0f)
@@ -63,7 +63,10 @@ Cell::Cell(Vector3 face,
 	e[0] = 0;	e[1] = 1;	e[2] = 2;
 	e[3] = 2;	e[4] = 3;	e[5] = 1;
 
-	Entity::Init(20, v, 6, e, (*cellTextures)[this->colour][this->type], Vector3(1.0f, 1.0f, 1.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
+	Entity::Init(20, v, 6, e, (*cellTextures)[this->colour][this->type],
+				 Vector3(1.0f, 1.0f, 1.0f),
+				 Vector3(0.0f, 0.0f, 0.0f),
+				 Vector3(0.0f, 0.0f, 0.0f));
 }
 
 void Cell::Init()
