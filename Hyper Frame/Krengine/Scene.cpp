@@ -72,7 +72,7 @@ namespace Krengine
 		glUniformMatrix4fv(projection, 1, GL_FALSE, value_ptr(camera.Projection));
 		glUniformMatrix4fv(view, 1, GL_FALSE, value_ptr(camera.View));
 
-		for (Entity* entity : entities)
+		for (const auto& entity : entities)
 		{
 			glBufferData(GL_ARRAY_BUFFER, entity->GetVerticesCount() * sizeof(float), entity->GetVertices(), GL_STATIC_DRAW);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, entity->GetElementsCount() * sizeof(int), entity->GetElements(), GL_STATIC_DRAW);
@@ -99,7 +99,7 @@ namespace Krengine
 		glUniformMatrix4fv(projection, 1, GL_FALSE, value_ptr(camera.Projection));
 		glUniformMatrix4fv(view, 1, GL_FALSE, value_ptr(camera.View));
 
-		for (int i = 0; i < entities.size(); ++i)
+		for (size_t i = 0; i < entities.size(); ++i)
 		{
 			glBufferData(GL_ARRAY_BUFFER, entities[i]->GetVerticesCount() * sizeof(float), entities[i]->GetVertices(), GL_STATIC_DRAW);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, entities[i]->GetElementsCount() * sizeof(int), entities[i]->GetElements(), GL_STATIC_DRAW);
@@ -111,7 +111,7 @@ namespace Krengine
 			Model *= scale(Model, entities[i]->Scale);
 			glUniformMatrix4fv(model, 1, GL_FALSE, value_ptr(Model));
 
-			glProgramUniform1i(picking->GetProgram(), glGetUniformLocation(picking->GetProgram(), "in_code"), i + 1);
+			glProgramUniform1i(picking->GetProgram(), glGetUniformLocation(picking->GetProgram(), "in_code"), static_cast<int>(i) + 1);
 
 			glDrawElements(GL_TRIANGLES, entities[i]->GetElementsCount(), GL_UNSIGNED_INT, 0);
 		}

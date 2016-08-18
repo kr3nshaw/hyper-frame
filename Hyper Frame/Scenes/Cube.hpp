@@ -27,10 +27,8 @@ class Cube : public Scene
 		unordered_map<Cell*, vector<Cell*>> neighbours;
 		bool drawing = false;
 		CellColour currentColour = Special;
-		unordered_map<Cell*, bool> searched;
 
 		bool MarkersLinked(Cell* cell);
-		bool markersLinked(Cell* cell);
 };
 
 #endif

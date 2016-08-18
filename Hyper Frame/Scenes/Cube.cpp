@@ -353,7 +353,7 @@ void Cube::Update()
 
 					vector<Cell*> linkedMarkers = markers;
 
-					for (int i = 0; i < linkedMarkers.size(); ++i)
+					for (size_t i = 0; i < linkedMarkers.size(); ++i)
 					{
 						if (MarkersLinked(linkedMarkers[i]))
 						{
@@ -403,32 +403,41 @@ void Cube::Draw()
 
 bool Cube::MarkersLinked(Cell* cell)
 {
-	bool linked = markersLinked(cell);
+	unordered_map<Cell*, bool> searched;
 
-	searched.clear();
-
-	return linked;
-}
-
-bool Cube::markersLinked(Cell* cell)
-{
-	searched.insert(make_pair(cell, true));
-
-	for (Cell* neighbour : neighbours.find(cell)->second)
+	for (const auto& c : neighbours)
 	{
-		if (searched.find(neighbour) == searched.end())
+		searched.insert(make_pair(c.first, false));
+	}
+
+	searched[cell] = true;
+
+	vector<Cell*> queue;
+
+	queue.push_back(cell);
+
+	while (!queue.empty())
+	{
+		Cell* c = queue.front();
+		queue.erase(queue.begin());
+
+		vector<Cell*> n = neighbours[c];
+
+		for (size_t i = 0; i < n.size(); ++i)
 		{
-			if (neighbour->GetColour() != cell->GetColour())
+			if (n[i]->GetColour() != cell->GetColour())
 			{
-				searched.insert(make_pair(neighbour, true));
+				n.erase(n.begin() + i--);
 			}
-			else if (neighbour->GetType() == Link)
-			{
-				return markersLinked(neighbour);
-			}
-			else
+			else if ((n[i]->GetType() != Link) && (n[i] != cell))
 			{
 				return true;
+			}
+			else if (!searched[n[i]])
+			{
+				searched[n[i]] = true;
+
+				queue.push_back(n[i]);
 			}
 		}
 	}
