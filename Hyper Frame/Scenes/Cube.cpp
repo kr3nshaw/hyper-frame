@@ -174,11 +174,11 @@ void Cube::Init()
 		fclose(file);
 	}
 
-	for (vector<vector<Cell*>> face : cells)
+	for (const auto& face : cells)
 	{
-		for (vector<Cell*> row : face)
+		for (const auto& row : face)
 		{
-			for (Cell* cell : row)
+			for (const auto& cell : row)
 			{
 				int face;
 				int x = cell->GetGridPosition().x;
@@ -199,7 +199,7 @@ void Cube::Init()
 				}
 				else
 				{
-					face = 3;
+					face = -1;
 				}
 
 				if ((x > 0) && (x != (dimension - 1)) && (y > 0) && (y != (dimension - 1)))
@@ -305,6 +305,11 @@ void Cube::Init()
 		}
 	}
 
+	for (const auto& c : neighbours)
+	{
+		blankSearched.insert(make_pair(c.first, false));
+	}
+
 	Scene::Init(program, Camera(Vector3(0.0f, 0.0f, cameraDistance),
 								Vector3(0.0f, 0.0f, 0.0f),
 								Vector3(0.0f, 1.0f, 0.0f),
@@ -318,10 +323,11 @@ void Cube::Update()
 {
 	if (Input::GetMouse1())
 	{
-		Entity* entity = GetEntityUnderMouse();
+		Entity* newEntity = GetEntityUnderMouse();
 
-		if (entity != nullptr)
+		if ((newEntity != entity) && (newEntity != nullptr))
 		{
+			entity = newEntity;
 			Cell* cell = reinterpret_cast<Cell*>(GetEntityUnderMouse());
 
 			if (!drawing && (cell->GetColour() != Special) && (cell->GetType() != Link))
@@ -403,12 +409,7 @@ void Cube::Draw()
 
 bool Cube::MarkersLinked(Cell* cell)
 {
-	unordered_map<Cell*, bool> searched;
-
-	for (const auto& c : neighbours)
-	{
-		searched.insert(make_pair(c.first, false));
-	}
+	unordered_map<Cell*, bool> searched = blankSearched;
 
 	searched[cell] = true;
 

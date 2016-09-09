@@ -25,6 +25,8 @@ class Cube : public Scene
 		vector<vector<vector<Cell*>>> cells;
 		vector<Cell*> markers;
 		unordered_map<Cell*, vector<Cell*>> neighbours;
+		unordered_map<Cell*, bool> blankSearched;
+		Entity* entity = nullptr;
 		bool drawing = false;
 		CellColour currentColour = Special;
 
