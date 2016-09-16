@@ -27,7 +27,7 @@ namespace Krengine
 			virtual void Draw();
 
 			/// <summary>Determines which <see cref="Entity" /> the mouse is currently hovering over.</summary>
-			/// <returns>The <see cref="Scene" /> that the mouse is currently hovering over.</summary>
+			/// <returns>The <see cref="Scene" /> that the mouse is currently hovering over.</returns>
 			Entity* GetEntityUnderMouse();
 
 			/// <summary>Gets the <see cref="nextScene" />.</summary>
