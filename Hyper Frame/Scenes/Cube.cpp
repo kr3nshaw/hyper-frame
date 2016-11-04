@@ -406,7 +406,6 @@ void Cube::Draw()
 	Scene::Draw();
 }
 
-
 bool Cube::MarkersLinked(Cell* cell)
 {
 	unordered_map<Cell*, bool> searched = blankSearched;
